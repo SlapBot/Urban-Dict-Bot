@@ -1,6 +1,6 @@
 # Urban Dict Bot
 
-A twitter bot written as an integration to [Urban Dictionary](https://www.urbandictionary.com/) 
+A twitter bot (https://twitter.com/botgonewrong) written as an integration to [Urban Dictionary](https://www.urbandictionary.com/) 
 allowing fun workflow around various "urban" meanings of a given word in a presentable way.
 
 
