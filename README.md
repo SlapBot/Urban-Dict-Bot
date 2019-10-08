@@ -72,6 +72,7 @@ of one of the obscure words in their tweet or be tagged by a user to reply a mea
 5. Upgrade your pip to latest version: pip install --upgrade pip
 6. Install the application dependencies: `pip install -r requirements.txt`
 7. Install the nltk packages: `python install_nltk_deps.py`
+8. Give executing permissions to phantomJS: `chmod +x phantomjs-2.1.1-linux-x86_64/bin/phantomjs`
 
 
 ## Getting Started

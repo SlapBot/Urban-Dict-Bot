@@ -19,7 +19,11 @@ class TwitterGet(object):
         self.auth.set_access_token(self.access_token, self.access_token_secret)
         self.api = API(self.auth)
         self.stream = Stream(self.auth, self.stdOL)
-        self.follow_ids = config.get_configuration("follow_ids").split(",")
+        follow_ids_string = config.get_configuration("follow_ids")
+        if follow_ids_string:
+            self.follow_ids = follow_ids_string.split(",")
+        else:
+            self.follow_ids = []
         self.handle = config.get_configuration("twitter_handle").split(",")
 
     # array of user_ids in string separated by comma

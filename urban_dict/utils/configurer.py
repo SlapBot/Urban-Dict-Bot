@@ -24,9 +24,9 @@ class Configurer:
             return False
         if value:
             return value
-        print("The correct API KEY wasn't provided or wasn't provided at all for %s, what the ... okay man"
-              " now look back at docs to find how to do that, is pretty simple just one line long. "
-              "Lazy ass" % key)
+        #print("The correct API KEY wasn't provided or wasn't provided at all for %s, what the ... okay man"
+        #      " now look back at docs to find how to do that, is pretty simple just one line long. "
+        #      "Lazy ass" % key)
         return False
 
     def write_configuration(self, key, value, section="TWITTER"):
