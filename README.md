@@ -54,7 +54,7 @@ of one of the obscure words in their tweet or be tagged by a user to reply a mea
 
 ### System Setup
 
-1. Run: 'sudo apt-get update`
+1. Run: `sudo apt-get update`
 2. Install libfontconfig: `sudo apt-get install libfontconfig`
 3. Create a twitter bot at: `https://developer.twitter.com/en/apps/`
 4. Fill in credentials at: `config.ini` file.
