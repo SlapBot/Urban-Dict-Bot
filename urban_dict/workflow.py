@@ -21,8 +21,12 @@ class Workflow(object):
             return self.follows(data)
 
     def mentions(self, data):
-        if 'in_reply_to_user_id' in data and data['in_reply_to_user_id'] is not None:
-            if int(data['in_reply_to_user_id']) == int(config.get_configuration("twitter_id")):
+        if 'entities' in data and 'user_mentions' in data['entities']:
+            user_mentions = data['entities']['user_mentions']
+            status = any(
+                int(user_mention['id']) == int(config.get_configuration("twitter_id"))
+                for user_mention in user_mentions)
+            if status:
                 tweet = self.clean(data)
                 term = self.parse_mention_term(tweet['text'])
                 ss_status = self.create_screenshot(term)
