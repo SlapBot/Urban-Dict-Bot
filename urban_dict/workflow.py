@@ -21,10 +21,16 @@ class Workflow(object):
             return self.follows(data)
 
     def mentions(self, data):
-        if 'in_reply_to_user_id' in data and data['in_reply_to_user_id'] is not None:
-            if int(data['in_reply_to_user_id']) == int(config.get_configuration("twitter_id")):
+        if 'entities' in data and 'user_mentions' in data['entities']:
+            user_mentions = data['entities']['user_mentions']
+            status = any(
+                int(user_mention['id']) == int(config.get_configuration("twitter_id"))
+                for user_mention in user_mentions)
+            if status:
                 tweet = self.clean(data)
                 term = self.parse_mention_term(tweet['text'])
+                if not term:
+                    return False
                 ss_status = self.create_screenshot(term)
                 if not ss_status:
                     return False
@@ -148,5 +154,5 @@ class Workflow(object):
     @staticmethod
     def parse_mention_term(text):
         if "define" in text.lower():
-            return " ".join(text.split(" ")[2:])
-        return " ".join(text.split(" ")[1:])
+            return text.split("define")[-1].strip()
+        return False
