@@ -1,0 +1,20 @@
+version: '3'
+services:
+  urban-dict-bot-status-update:
+    image: agent-urban-dict-bot-status-update
+    entrypoint: ["python", "schedule_status_update.py"]
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: Dockerfile-urban-dict-bot
+    volumes:
+      - "./:/app"
+  urban-dict-bot-track-mentions:
+    image: agent-urban-dict-bot-track-mentions
+    entrypoint: [sh, -c, "export OPENSSL_CONF=/etc/ssl && python track_mentions.py"]
+    restart: on-failure
+    build:
+      context: .
+      dockerfile: Dockerfile-urban-dict-bot
+    volumes:
+      - "./:/app"

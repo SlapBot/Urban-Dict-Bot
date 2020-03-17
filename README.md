@@ -10,6 +10,8 @@ allowing fun workflow around various "urban" meanings of a given word in a prese
     - [Pre-Requisites](#pre-requisites)
     - [System Setup](#system-setup)
     - [Application Setup](#application-setup)
+    - [Docker Setup](#docker-setup)
+    - [Authentication Setup](#authentication-setup)
 - [Getting Started](#getting-started)
     - [Following](#following)
     - [Mentions](#mentions)
@@ -48,18 +50,19 @@ of one of the obscure words in their tweet or be tagged by a user to reply a mea
 
 ### Pre-requisites
 
-1. Python3
-2. pip
-3. virtualenv
+- python3.6+
+- pip
+- virtualenv
+
+Or
+
+- docker
+- docker-compose
 
 ### System Setup
 
 1. Run: `sudo apt-get update`
 2. Install libfontconfig: `sudo apt-get install libfontconfig`
-3. Create a twitter bot at: `https://developer.twitter.com/en/apps/`
-4. Fill in credentials at: `config.ini` file.
-    - Leave the `follow_ids` and `status_title` for now.
-
 
 ### Application Setup
 
@@ -74,6 +77,19 @@ of one of the obscure words in their tweet or be tagged by a user to reply a mea
 7. Install the nltk packages: `python install_nltk_deps.py`
 8. Give executing permissions to phantomJS: `chmod +x phantomjs-2.1.1-linux-x86_64/bin/phantomjs`
 
+### Docker Setup
+
+1. Build the docker images: `docker-compose build`
+- Additional Notes:
+    - This will spin up two containers:
+        - Status updater posting trending words every 24 hours configurable at: `schedule_status_update.py`
+        - User tracker tracking users who mention you asking for a definition of a word: `track_mentions.py`
+
+### Authentication Setup
+
+1. Create a twitter bot at: `https://developer.twitter.com/en/apps/`
+2. Fill in credentials at: `config.ini` file.
+    - Leave the `follow_ids` and `status_title` for now.
 
 ## Getting Started
 
@@ -173,3 +189,7 @@ Okay - this is a tricky one, its again an old project of mine where I had an ide
 So I created this bot long time ago. It was only after I built that I realized it wasn't the brightest idea to build.
 
 But here we are - I am on a marathon of uploading my old projects to open-source.
+
+## TODO
+
+1. Write a queue for track-mentions
